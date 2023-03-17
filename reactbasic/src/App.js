@@ -5,10 +5,32 @@ import Home from './Route/Home';
 import About from './Route/About';
 import Products from './Route/Products';
 import ProductDetail from './Route/ProductDetail';
+import Modal from './Route/Modal';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [count, setCount] = useState(0)
+  // useEffect 함수가 매개변수 두 개를 받는다.
+  // 1. 콜백함수
+  // 2. [] array
+  useEffect(()=> {
+    console.log('useEffect1')
+  },[])
+
+  // Array에 state 값을 넣으면 리액트 그 값을 주시하고 있다가
+  // count 업데이트 되면 render State 업데이트 됐다고 알려준다.
+  useEffect(()=> {
+    console.log('useEffect2', count)
+  },[count])
+
   return (
     <div className="App">
+      {console.log('render')}
+      <h2>{count}</h2>
+      <button onClick={()=>{setCount(count+1)}}>더하기</button>
+
+      <Modal/>
       <Routes>
         {/* Route 안에 속성값이 두 개가 들어간다 path / element 
             1. path : 페이지의 주소 URL
